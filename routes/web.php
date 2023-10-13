@@ -21,7 +21,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
-            
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\TransaksiController;
+use App\Models\Transaksi;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -37,23 +41,33 @@ Route::get('verify', function () {
 Route::get('/reset-password/{token}', function ($token) {
 	return view('sessions.password.reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
-
+Route::get('/UserManagement', [UserController::class, 'tabel'])->middleware('auth')->name('UserManagement');
+Route::get('/pesanan', [TransaksiController::class, 'tabeltrans'])->middleware('auth')->name('pesanan');
+Route::get('/tables', [HomeController::class, 'tabeldoc'])->middleware('auth')->name('tables');
+Route::get('/billing', [BillingController::class, 'tabelbill'])->middleware('auth')->name('billing');
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
+Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
+Route::post('/admin-users', [UserController::class, 'insertAdminUser'])->name('admin-user.store');
+Route::post('/isertdoc', [HomeController::class, 'insertDokumen'])->name('insertdoc.store');
+Route::post('/isertsej', [HomeController::class, 'insertSejarah'])->name('insertsej.store');
+Route::post('/updatesej/{id}', [HomeController::class, 'updateSejarah'])->name('updatesej.store');
+Route::delete('/category/{id}', [UserController::class, 'destroy'])->name('nieuws.destroy');
+Route::delete('/deletedoc/{id}', [HomeController::class, 'destroydoc'])->name('nieuws.destroydoc');
+Route::delete('/deletebill/{id}', [BillingController::class, 'destroybill'])->name('nieuws.destroybill');
+Route::delete('/deletetrans/{id}', [TransaksiController::class, 'destroytrans'])->name('nieuws.destroytrans');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('billing', function () {
-		return view('pages.billing');
-	})->name('billing');
-	Route::get('pesanan', function () {
-		return view('pages.pesanan');
-	})->name('pesanan');
-	Route::get('tables', function () {
-		return view('pages.tables');
-	})->name('tables');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
+	// Route::get('billing', function () {
+	// 	return view('pages.billing');
+	// })->name('billing');
+	// Route::get('pesanan', function () {
+	// 	return view('pages.pesanan');
+	// })->name('pesanan');
+	// Route::get('tables', function () {
+	// 	return view('pages.tables');
+	// })->name('tables');
+
 	Route::get('virtual-reality', function () {
 		return view('pages.virtual-reality');
 	})->name('virtual-reality');
@@ -66,10 +80,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('static-sign-up', function () {
 		return view('pages.static-sign-up');
 	})->name('static-sign-up');
-	Route::get('user-management', function () {
-		return view('pages.laravel-examples.user-management');
-	})->name('user-management');
 	Route::get('user-profile', function () {
+		return view('pages.laravel-examples.user-profile');
+	})->name('user-profile');
+		Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
 });

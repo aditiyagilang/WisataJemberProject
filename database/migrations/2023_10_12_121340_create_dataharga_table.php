@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('id_jenis')->constrained('jenis')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('nama');
             $table->integer('durasi');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('gambar');
+            $table->int('harga');
             $table->timestamps();
         });
     }

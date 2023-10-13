@@ -46,8 +46,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'user-management' ? 'active-page' : '' }}" href="{{ route('user-management') }}">
-                    <div class="text-center me-2 d-flex align-items-center justify-content-center {{ $activePage != 'user-management' ? 'inactive' : '' }}">
+                <a class="nav-link text-white {{ $activePage == 'UserManagement' ? 'active-page' : '' }}" href="{{ route('UserManagement') }}">
+                    <div class="text-center me-2 d-flex align-items-center justify-content-center {{ $activePage != 'UserManagement' ? 'inactive' : '' }}">
                         <i style="font-size: 1rem; " class="fas fa-users text-center"></i>
                     </div>
                     <span class="nav-link-text ms-1">Daftar User</span>
@@ -55,14 +55,14 @@
             </li>
 
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'user-profile' ? 'active-page' : '' }}" href="{{ route('user-profile') }}">
                     <div class="text-center me-2 d-flex align-items-center justify-content-center {{ $activePage != 'user-profile' ? 'inactive' : '' }}">
                         <i style="font-size: 1.2rem;" class="fas fa-user-circle text-center"></i>
                     </div>
                     <span class="nav-link-text ms-1">User Profile</span>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'tables' ? 'active-page' : '' }}" href="{{ route('tables') }}">
@@ -86,11 +86,11 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">list_alt</i> <!-- Mengganti ikon ke "list_alt" -->
                     </div>
-                    <span class="nav-link-text ms-1">Note List</span> <!-- Mengganti teks menjadi "Note List" -->
+                    <span class="nav-link-text ms-1">Pesanan</span> <!-- Mengganti teks menjadi "Note List" -->
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'profile' ? ' active-page' : '' }}  " href="{{ route('profile') }}">
+                <a class="nav-link text-white {{ $activePage == 'user-profile' ? ' active-page' : '' }}  " href="{{ route('user-profile') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>

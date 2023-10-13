@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('deskripsi');
             $table->string('foto');
+            $table->enum('jenis',['dokumentasi','sejarah']);
             $table->timestamps();
         });
     }

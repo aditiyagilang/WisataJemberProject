@@ -23,7 +23,6 @@ class ProfileController extends Controller
             'location' => 'required'
         ]);
 
-        auth()->user()->update($attributes);
         return back()->withStatus('Profile successfully updated.');
     
 }

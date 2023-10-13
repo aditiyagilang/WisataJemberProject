@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pembeli');
+            $table->string('nama_paket');
+            $table->string('alamat');
             $table->integer('total_harga');
             $table->foreignId('users_id')->constrained('users')->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId('id_dataharga')->constrained('dataharga')->restrictOnDelete()->cascadeOnUpdate();
             $table->char('nohp');
             $table->integer('total');
             $table->enum('status', ['Belum','Selesai']);
