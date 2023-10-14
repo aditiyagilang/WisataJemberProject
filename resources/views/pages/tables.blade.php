@@ -4,9 +4,9 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Dokumentasi"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <div class="col-10">
+
             <h4 style="color: #245734;">DOKUMENTASI</h4>
-        </div>
+
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
@@ -44,50 +44,11 @@
                             </div>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="adddoc" tabindex="-1" aria-labelledby="adddoc"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="adddoc">Tambah Data</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="POST" action="{{ route('insertdoc.store') }}"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="mb-3">
-                                                    <label for="judul" class="form-label">Judul</label>
-                                                    <input type="text" class="form-control" id="judul"
-                                                        name="judul" required style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                                                    <input type="text" class="form-control" id="deskripsi"
-                                                        name="deskripsi" required style="border: 2px solid #245734;">
-                                                </div>
 
-                                                <div class="mb-3">
-                                                    <label for="foto" class="form-label">Foto (jpg, png,
-                                                        jpeg)</label>
-                                                    <input type="file" class="form-control" id="foto"
-                                                        name="foto[]" accept=".jpg, .jpeg, .png"
-                                                        style="border: 2px solid #245734;">
-                                                </div>
-
-
-                                                <input type="hidden" name="level" value="admin">
-                                                <button type="submit" class="btn btn-success">Simpan</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive p-0" style="max-height: 300px; overflow-y: auto;">
                                 <table class="table align-items-center mb-0">
                                     <thead style="background-color: #245734; color: white; ">
                                         <tr>
@@ -380,6 +341,7 @@
 </div>
 @endforeach
 
+
 @foreach ($dokumentasis as $dokumentasi)
 <div class="modal fade" id="updoc{{$dokumentasi->id}}" tabindex="-1" aria-labelledby="updoc" aria-hidden="true">
     <div class="modal-dialog">
@@ -418,3 +380,43 @@
 </div>
 @endforeach
 
+<div class="modal fade" id="adddoc" tabindex="-1" aria-labelledby="adddoc"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="adddoc">Tambah Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{{ route('insertdoc.store') }}"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="judul" class="form-label">Judul</label>
+                    <input type="text" class="form-control" id="judul"
+                        name="judul" required style="border: 2px solid #245734;">
+                </div>
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <input type="text" class="form-control" id="deskripsi"
+                        name="deskripsi" required style="border: 2px solid #245734;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto (jpg, png,
+                        jpeg)</label>
+                    <input type="file" class="form-control" id="foto"
+                        name="foto[]" accept=".jpg, .jpeg, .png"
+                        style="border: 2px solid #245734;">
+                </div>
+
+
+                <input type="hidden" name="level" value="admin">
+                <button type="submit" class="btn btn-success">Simpan</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

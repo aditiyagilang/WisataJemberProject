@@ -51,6 +51,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-xl-4 col-sm-8 ">
                     <div class="row mt-3">
                         <div class="card">
@@ -61,7 +64,7 @@
                                             <p class="text-center fs-5">Jumlah Customer :</p>
                                         </div>
                                         <div class="col-4">
-                                            <p class="text-center fs-5">2000</p>
+                                            <p class="text-center fs-5">{{$userUserCounts}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -74,10 +77,10 @@
                                 <div class="text-center ">
                                     <div class="row mt-3">
                                         <div class="col-6">
-                                            <p class="text-center fs-5">Jumlah Customer :</p>
+                                            <p class="text-center fs-5">Jumlah Admin : </p>
                                         </div>
                                         <div class="col-4">
-                                            <p class="text-center fs-5">2000</p>
+                                            <p class="text-center fs-5">{{$adminUserCounts}}</p>
                                         </div>
                                     </div>
                                 </div>

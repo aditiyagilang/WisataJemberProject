@@ -5,12 +5,11 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="User Management"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <div class="col-10">
-            <h4 style="color: #245734;">DATA CUSTOMER</h4>
-        </div>
+
+
+
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-12">
+            <h4 style="color: #245734;" class="m-0">DATA CUSTOMER</h4>
                     <div class="card my-4">
                         <div class="row">
                             <div class="col-2">
@@ -29,14 +28,12 @@
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
-                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
-                                    @csrf
-                                </form>
+
                             </div>
 
                         </div>
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive p-0" style="max-height: 300px; overflow-y: auto;">
                                 <table class="table align-items-center mb-0">
                                     <thead style="background-color: #245734; color: white; ">
                                         <tr>
@@ -68,7 +65,7 @@
                                         <tr>
                                             <td class="text-center" contenteditable="true">{{ $user->id }}</td>
                                             <td class="text-center" contenteditable="true">
-                                                <img src="{{ asset('path_to_customer_image_folder/' . $user->photo) }}" class="avatar avatar-sm me-3 border-radius-lg" alt="{{ $user->name }}">
+                                                <img src="{{ asset('assets/img/profile/' . $user->photo) }}" class="avatar avatar-sm me-3 border-radius-lg" alt="{{ $user->name }}">
                                             </td>
                                             <td class="text-center" contenteditable="true">{{ $user->name }}</td>
                                             <td class="text-center" contenteditable="true">{{ $user->email }}</td>
@@ -97,18 +94,16 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+
 
         <x-footers.auth></x-footers.auth>
         </div>
-        <div class="col-10">
-            <h4 style="color: #245734;">DATA ADMIN</h4>
-        </div>
+
+
 
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-12">
+            <h4 style="color: #245734;">DATA ADMIN</h4>
+
                     <div class="card my-4">
                         <div class="row">
                             <div class="col-2">
@@ -138,55 +133,12 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="addAdminUserModal" tabindex="-1" aria-labelledby="addAdminUserModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="addAdminUserModalLabel">Tambah Admin User</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="POST" action="{{ route('admin-user.store') }}" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="mb-3">
-                                                    <label for="name" class="form-label">Nama</label>
-                                                    <input type="text" class="form-control" id="name" name="name" required style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for ="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" required style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="phone" class="form-label">Nomor Telepon</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone" style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="alamat" class="form-label">Alamat</label>
-                                                    <input type="text" class="form-control" id="alamat" name="alamat" style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="password" class="form-label">Password</label>
-                                                    <input type="password" class="form-control" id="password" name="password" required style="border: 2px solid #245734;">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="photo" class="form-label">Foto (jpg, png, jpeg)</label>
-                                                    <input type="file" class="form-control" id="photo" name="photo[]" accept=".jpg, .jpeg, .png" style="border: 2px solid #245734;">
-                                                </div>
 
-
-                                                <input type="hidden" name="level" value="admin">
-                                                <button type="submit" class="btn btn-success">Simpan</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                         </div>
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive p-0" style="max-height: 300px; overflow-y: auto;">
                                 <table class="table align-items-center mb-0">
                                     <thead style="background-color: #245734; color: white; ">
                                         <tr>
@@ -242,8 +194,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
+
             </div>
             <x-footers.auth></x-footers.auth>
         </div>
@@ -251,3 +202,47 @@
     <x-plugins></x-plugins>
 
 </x-layout>
+ <!-- Modal -->
+ <div class="modal fade" id="addAdminUserModal" tabindex="-1" aria-labelledby="addAdminUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAdminUserModalLabel">Tambah Admin User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('admin-user.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for ="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="phone" name="phone" style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Foto (jpg, png, jpeg)</label>
+                        <input type="file" class="form-control" id="photo" name="photo[]" accept=".jpg, .jpeg, .png" style="border: 2px solid #245734;">
+                    </div>
+
+
+                    <input type="hidden" name="level" value="admin">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

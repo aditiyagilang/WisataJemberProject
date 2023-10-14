@@ -23,7 +23,7 @@
                 <li class="nav-item dropdown pe-2 d-flex align-items-center">
                     <a href="{{ route('profile') }}" class="nav-link text-body p-0" id="profile">
                         <div class="profile-img" style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">
-                            <img src="{{ asset('assets/img/profile/devi.png') }}" alt="profile-img" class="img-fluid" style="object-fit: cover; width: 100%; height: 120%;" />
+                            <img src="{{ asset('assets/img/profile/'. old('photo', auth()->user()->photo) ) }}" alt="profile-img" class="img-fluid" style="object-fit: cover; width: 100%; height: 120%;" />
                         </div>
                     </a>
                 </li>

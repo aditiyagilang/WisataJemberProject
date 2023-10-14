@@ -35,10 +35,15 @@
                                 </form>
                             </div>
                             <div class="col-7">
-                                <div class=" me-3 my-3 text-end">
-                                    <a class="btn btn-success btn-link" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Tambah</a>
+                                <div class="me-3 my-3 text-end">
+                                    <a class="btn btn-success btn-link" data-bs-toggle="modal" data-bs-target="#addjen">
+                                        <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Tambah
+                                    </a>
                                 </div>
                             </div>
+
+
+
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0" style="max-height: 400px; overflow-y: auto;">
@@ -96,7 +101,9 @@
                                                 <div class="row">
                                                     <div class="col-3"></div>
                                                     <div class="col-2">
-                                                        <a rel="tooltip" class="btn btn-warning btn-link" href="" data-original-title="" title="">
+                                                        <a rel="tooltip" class="btn btn-warning btn-link"
+                                                            href="#" data-original-title="Edit"
+                                                            data-bs-toggle="modal" data-bs-target="#upbill{{$dataharga->id }}">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>
                                                         </a>
@@ -134,3 +141,110 @@
     <x-plugins></x-plugins>
 
 </x-layout>
+
+@foreach ($jeniss as $jenis)
+ <!-- Modal -->
+<div class="modal fade" id="addjen" tabindex="-1" aria-labelledby="addjen" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adddoc">Tambah Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('insertbill.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_jenis" class="form-label">Jenis</label>
+                        <select class="form-select" id="id_jenis" name="id_jenis" required style="border: 2px solid #245734;">
+                            @foreach ($jeniss as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="durasi" class="form-label">Durasi</label>
+                        <input type="text" class="form-control" id="durasi" name="durasi" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control" id="harga" name="harga" required style="border: 2px solid #245734;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Foto (jpg, png, jpeg)</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar[]" accept=".jpg, .jpeg, .png" style="border: 2px solid #245734;">
+                    </div>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
+
+@foreach ($datahargas as $dataharga)
+<div class="modal fade" id="upbill{{$dataharga->id}}" tabindex="-1" aria-labelledby="upbill" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addbill">Edit Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('updatebill.store', ['id' => $dataharga->id]) }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required style="border: 2px solid #245734;"
+                        value="{{ $dataharga->nama }}" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_jenis" class="form-label">Jenis</label>
+                        <select class="form-select" id="id_jenis" name="id_jenis" required style="border: 2px solid #245734;">
+                            @foreach ($jeniss as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="durasi" class="form-label">Durasi</label>
+                        <input type="text" class="form-control" id="durasi" name="durasi" required style="border: 2px solid #245734;"
+                        value="{{ $dataharga->durasi }}" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" required style="border: 2px solid #245734;"
+                        value="{{ $dataharga->deskripsi }}" required style="border: 2px solid #245734;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control" id="harga" name="harga" required style="border: 2px solid #245734;"
+                        value="{{ $dataharga->harga }}" required style="border: 2px solid #245734;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Foto (jpg, png, jpeg)</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar[]" accept=".jpg, .jpeg, .png" style="border: 2px solid #245734;">
+                    </div>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+

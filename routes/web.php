@@ -37,14 +37,16 @@ Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::get('verify', function () {
 	return view('sessions.password.verify');
-})->middleware('guest')->name('verify'); 
+})->middleware('guest')->name('verify');
 Route::get('/reset-password/{token}', function ($token) {
 	return view('sessions.password.reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 Route::get('/UserManagement', [UserController::class, 'tabel'])->middleware('auth')->name('UserManagement');
 Route::get('/pesanan', [TransaksiController::class, 'tabeltrans'])->middleware('auth')->name('pesanan');
 Route::get('/tables', [HomeController::class, 'tabeldoc'])->middleware('auth')->name('tables');
+Route::get('/count', [DashboardController::class, 'count'])->middleware('auth')->name('count');
 Route::get('/billing', [BillingController::class, 'tabelbill'])->middleware('auth')->name('billing');
+Route::get('/jenis', [BillingController::class, 'jenis'])->middleware('auth')->name('jenis');
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
@@ -52,11 +54,20 @@ Route::post('user-profile', [ProfileController::class, 'update'])->middleware('a
 Route::post('/admin-users', [UserController::class, 'insertAdminUser'])->name('admin-user.store');
 Route::post('/isertdoc', [HomeController::class, 'insertDokumen'])->name('insertdoc.store');
 Route::post('/isertsej', [HomeController::class, 'insertSejarah'])->name('insertsej.store');
+Route::post('/isertbill', [BillingController::class, 'insertBilling'])->name('insertbill.store');
+Route::post('/iserttran', [TransaksiController::class, 'insertTransaction'])->name('inserttran.store');
 Route::post('/updatesej/{id}', [HomeController::class, 'updateSejarah'])->name('updatesej.store');
+Route::post('/updatebill/{id}', [BillingController::class, 'updateBilling'])->name('updatebill.store');
+Route::post('/updatetran/{id}', [TransaksiController::class, 'updateTransaction'])->name('updatetran.store');
+Route::post('/updateadm/{id}', [UserController::class, 'updateAdminUser'])->name('updateadm.store');
+Route::put('/user-profile/{id}', [UserController::class, 'updateAdminUser'])->name('update-user-profile');
+Route::post('/user-profile-photo', [UserController::class, 'updateAdminUserPhoto'])->name('update-user-profile-photo');
+
 Route::delete('/category/{id}', [UserController::class, 'destroy'])->name('nieuws.destroy');
 Route::delete('/deletedoc/{id}', [HomeController::class, 'destroydoc'])->name('nieuws.destroydoc');
 Route::delete('/deletebill/{id}', [BillingController::class, 'destroybill'])->name('nieuws.destroybill');
 Route::delete('/deletetrans/{id}', [TransaksiController::class, 'destroytrans'])->name('nieuws.destroytrans');
+Route::get('/get-harga/{id}', [TransaksiController::class, 'getHarga']);
 Route::group(['middleware' => 'auth'], function () {
 	// Route::get('billing', function () {
 	// 	return view('pages.billing');
